@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Support Playlists · What next?</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1a18;
+    --paper: #f5f2ec;
+    --warm-mid: #b8a888;
+    --accent: #2d5a3d;
+    --accent-light: #e8f0eb;
+    --muted: #7a7468;
+    --rule: #d8d2c8;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.75;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  header {
+    padding: 3.5rem 2rem 2.2rem;
+    max-width: 700px;
+    margin: 0 auto;
+    border-bottom: 1px solid var(--rule);
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards 0.1s;
+  }
+
+  .eyebrow {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.8rem;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    line-height: 1.15;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  h1 em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--accent);
+  }
+
+  .sub-head {
+    font-size: 1rem;
+    color: var(--muted);
+    margin-top: 1.1rem;
+    font-weight: 400;
+    max-width: 540px;
+  }
+
+  main {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 0 2rem 4rem;
+  }
+
+  section {
+    padding: 3rem 0;
+    border-bottom: 1px solid var(--rule);
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards;
+  }
+
+  section:nth-child(1) { animation-delay: 0.3s; }
+  section:nth-child(2) { animation-delay: 0.5s; }
+  section:nth-child(3) { animation-delay: 0.65s; }
+  section:nth-child(4) { animation-delay: 0.8s; }
+  section:nth-child(5) { animation-delay: 0.95s; }
+  section:nth-child(6) { animation-delay: 1.1s; }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.45rem;
+    font-weight: 600;
+    margin-bottom: 1.3rem;
+    line-height: 1.3;
+  }
+
+  h2 em { font-style: italic; font-weight: 400; }
+
+  p { margin-bottom: 1.1rem; }
+  p:last-child { margin-bottom: 0; }
+
+  .pull-quote {
+    border-left: 3px solid var(--accent);
+    padding: 0.9rem 0 0.9rem 1.8rem;
+    margin: 2rem 0;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+
+  .pull-quote cite {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-style: normal;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 0.65rem;
+  }
+
+  .dark-block {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 2.2rem 2rem;
+    margin: 2rem 0;
+    border-radius: 3px;
+  }
+
+  .dark-block .label {
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--warm-mid);
+    margin-bottom: 0.9rem;
+  }
+
+  .dark-block p {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-style: italic;
+    line-height: 1.65;
+    color: var(--paper);
+    margin: 0;
+  }
+
+  .dark-block .strapline {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    font-style: normal;
+    color: var(--paper);
+    line-height: 1.3;
+    margin-top: 1.2rem;
+  }
+
+  .tracks { list-style: none; margin: 1.8rem 0; }
+
+  .tracks li {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.2rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .tracks li:last-child { border-bottom: none; }
+
+  .track-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-style: italic;
+    color: var(--warm-mid);
+    min-width: 1.8rem;
+    padding-top: 0.1rem;
+  }
+
+  .track-content strong {
+    display: block;
+    font-weight: 500;
+    font-size: 0.93rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .track-content span {
+    font-size: 0.87rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .accent-box {
+    background: var(--accent-light);
+    border-left: 3px solid var(--accent);
+    padding: 1.3rem 1.6rem;
+    margin: 2rem 0;
+    border-radius: 0 3px 3px 0;
+  }
+
+  .accent-box p { font-size: 0.95rem; margin: 0; }
+  .accent-box p + p { margin-top: 0.6rem; }
+
+  .closing-block {
+    padding: 4rem 0 2rem;
+    border-bottom: none;
+  }
+
+  .closing-block p {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-style: italic;
+    line-height: 1.8;
+    color: var(--muted);
+    margin-bottom: 1.2rem;
+  }
+
+  .closing-block .final {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 600;
+    color: var(--ink);
+    margin-top: 2rem;
+    line-height: 1.4;
+  }
+
+  footer {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem 4rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 1.3s;
+  }
+
+  .sig-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+  }
+
+  .sig-role {
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  .sig-role a { color: var(--accent); text-decoration: none; }
+  .sig-role a:hover { text-decoration: underline; }
+
+  .footer-note {
+    font-size: 0.74rem;
+    color: var(--muted);
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rule);
+    line-height: 1.7;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <p class="eyebrow">What's going on? Get a Playlist.</p>
+  <h1>The answer to<br><em>what next?</em></h1>
+  <p class="sub-head">At the end of every clinical encounter in the NHS, the same question goes unanswered. Until now.</p>
+</header>
+
+<main>
+
+  <section>
+    <h2>The question nobody answers</h2>
+    <p>Every day, millions of NHS appointments end the same way.</p>
+    <p>The clinician has done their job. The patient walks out.</p>
+    <p>And then what?</p>
+
+    <div class="pull-quote">
+      She's been to see her GP about not sleeping. Anxiety, probably. The GP was kind. The prescription is in her bag. She's standing in the car park. Still anxious. Still exhausted. Nobody told her about the group on Thursday evenings. Or the community worker two streets away who does exactly this.
+      <cite>— Sarah. Every surgery. Every day.</cite>
+    </div>
+
+    <p>For as long as the NHS has existed, the clinical encounter has had an answer. The <em>what next?</em> has not.</p>
+  </section>
+
+  <section>
+    <h2>The moment of highest need</h2>
+
+    <div class="pull-quote">
+      She's sitting on a hospital bed. Discharge letter in her hand. She doesn't know how she's getting home. Not enough money for a taxi. Can't remember where the bus goes from. Too exhausted to think who to call. Her daughter's at work. The nurse is busy. The ward is loud. Nobody is coming.
+      <cite>— Margaret. Every ward. Every discharge.</cite>
+    </div>
+
+    <p>The what-next problem is at its most acute the moment someone leaves hospital — overwhelmed, often alone, holding a letter that tells them what happened but not what to do next.</p>
+  </section>
+
+  <section>
+    <h2>Why a playlist — <em>not a library</em></h2>
+
+    <p>When you make someone a mixtape, you don't hand them a library. You sequence something for where they are right now.</p>
+
+    <div class="dark-block">
+      <p class="label">The distinction</p>
+      <p>A library says: everything is here, go find it. A playlist says: I heard you. Here's what I think you need, in this order, starting now.</p>
+    </div>
+
+    <p>Most of what follows a clinical encounter is a library. A leaflet. A website. A signposting sheet built for someone who arrived ready — with a plan, a next step already forming.</p>
+    <p>Most people don't arrive ready. They arrive in a state. And they leave in one.</p>
+  </section>
+
+  <section>
+    <h2>What Support Playlists actually are</h2>
+    <p>Not a chatbot. Not a portal. Not a directory with a filter.</p>
+    <p>A one-shot system. Natural language in. Curated, sequenced support out. No login. No account. No personal data stored.</p>
+
+    <ul class="tracks">
+      <li>
+        <span class="track-num">01</span>
+        <div class="track-content">
+          <strong>Say what's going on</strong>
+          <span>Ramble. Slur. Shout. Whisper. However the words come out. LLMs are uniquely brilliant at understanding messy, unstructured, deeply human language.</span>
+        </div>
+      </li>
+      <li>
+        <span class="track-num">02</span>
+        <div class="track-content">
+          <strong>Emotional Architecture reads the moment</strong>
+          <span>Not just what you need — where you are right now. How heavy it feels. How much you can take in. What needs to come first.</span>
+        </div>
+      </li>
+      <li>
+        <span class="track-num">03</span>
+        <div class="track-content">
+          <strong>Get a Playlist</strong>
+          <span>3 to 5 resources — local and national — sequenced by readiness. Starting with the most accessible step. Built for people who are unready, stressed, or uncertain.</span>
+        </div>
+      </li>
+    </ul>
+
+    <div class="dark-block">
+      <p class="label">The strapline</p>
+      <div class="strapline">What's going on?<br>Get a Playlist.</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Everywhere — <em>by design</em></h2>
+
+    <p>Support Playlists are platform agnostic. Deliberately. They don't live inside any single system. They sit above all of them.</p>
+
+    <div class="accent-box">
+      <p>At the end of every clinical encounter in the NHS.</p>
+      <p>Every social care encounter. Every VCSE conversation.</p>
+      <p>In every homeless shelter, housing office, job centre, staffroom, and school corridor.</p>
+      <p>Wherever a human being needs to know what comes next.</p>
+    </div>
+
+    <p>The same engine. The same strapline. A thousand different doors.</p>
+  </section>
+
+  <section class="closing-block">
+    <p>Arthur C. Clarke said that any sufficiently advanced technology is indistinguishable from magic.</p>
+    <p>Support Playlists doesn't feel like technology.</p>
+    <div class="final">It feels like someone taking your hand.</div>
+  </section>
+
+</main>
+
+<footer>
+  <div>
+    <p class="sig-name">Neighbourhood CoLab CIC</p>
+    <p class="sig-role">
+      Isle of Portland, Dorset<br>
+      <a href="https://neighbourhoodcolab.netlify.app" target="_blank">neighbourhoodcolab.netlify.app</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
